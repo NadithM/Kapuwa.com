@@ -1,0 +1,309 @@
+<!DOCTYPE HTML>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Kapuwa.com</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<!--link rel="stylesheet" href="assets/css/main.css" /-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">
+        <!-- Include the jQuery library -->
+        <script src="jquery-2.1.4.js"></script>
+        <!-- Include the jQuery Mobile library -->
+        <script src="jquery.mobile-1.4.5.min.js"></script>
+        <link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="landing">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header" class="alt">
+				  
+
+					<nav id="nav">
+					  <ul>
+						  <li style="white-space: nowrap;"><a href="index.html">Home</a></li>
+                          <li><a href="#signup" data-rel="popup" class="button" data-position-to="window" data-transition="pop">Sign Up</a></li>
+					  </ul>
+								  	
+				    </nav>
+                
+			</header>
+            
+			<!-- Banner -->
+				<section id="banner">
+					<h2>කපුවා.com</h2>
+					<p>The place where you get Hitched.</p>
+					<ul class="actions">
+						<li><a href="#signup" data-rel="popup" class="button special" data-position-to="window" data-transition="pop">Sign Up</a></li>
+
+						<li><a href="#signin" data-rel="popup" class="button special" data-position-to="window" data-transition="pop">Sign In</a></li>
+					</ul>
+				</section>
+
+			<!-- Main -->
+				
+		  <!-- CTA -->
+				<section id="cta">
+
+					<h2>Contact us</h2>
+					
+
+				  <form>
+						<div class="row uniform 50%">
+							<div class="8u 12u(mobilep)">
+								<input type="email" name="email" id="email" placeholder="Email Address"/>
+							</div>
+							<div class="4u 12u(mobilep)">
+								<input type="submit" value="request" class="fit" />
+							</div>
+						</div>
+					</form>
+
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<ul class="icons">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; KAPUWA.com . All rights reserved.</li><li>Design: <a href="http://html5up.net">RAMA</a></li>
+					</ul>
+				</footer>
+
+            <div data-role="popup" id="signup" class="ui-content" data-overlay-theme="b">
+                <form style="width: auto" method="post" id="basics" action="Signup.php">
+			    <table border="0" class="table-wrapper" id="frm 1">
+			    	<tr>
+                    <td ></td>
+			      	<td ><label for="fname">First Name : </label></td>	
+			     	<td ><input name="fname" type="text" id="fname" style=" width: 250px" required></td>
+			      	<td >&nbsp;</td>
+			      	<td ><label for="lname" >Last Name : </label></td>
+			      	<td ><input name="lname" type="text" id="lname" style=" width: 250px" required></td>
+                    <td ></td>
+       	          </tr>
+			    	<tr>
+			    	<td  ></td>
+					<td   ><label for="NIC">NIC No : </label></td>	
+			     	<td  ><input name="NIC" type="text" class="table-wrapper" id="NIC"  required></td>
+			      	<td  >&nbsp;</td>
+			      	<td  ><label for="email">E-Mail : </label></td>
+			      	<td  ><input name="email" type="email" id="email" placeholder="Your email.." required></td>
+                      <td  ></td>
+		        	</tr>
+			    	<tr>
+			    	  <td  ></td>
+			    	  <td  ><label>Gender: </label></td>	
+			     	  <td  ><fieldset data-role="controlgroup" data-type="horizontal">
+			     	    <label for="male">Male</label>
+                        <input type="radio" name="gender" id="male" value="male" checked>
+                        <label for="female">Female</label>
+                        <input type="radio" name="gender" id="female" value="female">
+                           </fieldset> </td>
+			      	  <td  >&nbsp;</td>
+			      	  <td  ><label>Address : </label></td>
+			      	  <td  ><input name="add1" type="text" id="fname" required>
+                        <input name="add2" type="text" id="fname">
+                        <input name="add3" type="text" id="fname"></td>
+                      <td  ></td>
+		        	</tr>
+			    	<tr>
+			    	  <td  ></td>
+			    	  <td    ><label>Date of Birth: </label></td>	
+			     	  <td  ><fieldset data-role="controlgroup" data-type="horizontal">
+                           <select name="year" size="1" class="style3" id="year">
+			     	    <option value="1995">1995</option>
+			     	    <option value="1994">1994</option>
+			     	    <option value="1993" selected>1993</option>
+			     	    <option value="1992">1992</option>
+			     	    <option value="1991">1991</option>
+			     	    <option value="1990">1990</option>
+			     	    </select>
+			     	    <select name="month" size="1" class="style3" id="month">
+			     	      <option value="01">Jan</option>
+			     	      <option value="02" selected>Feb</option>
+			     	      <option value="03">Mar</option>
+			     	      <option value="04">Apr</option>
+			     	      <option value="05">May</option>
+			     	      <option value="06">Jun</option>
+			     	      <option value="07">Jul</option>
+			     	      <option value="08">Aug</option>
+			     	      <option value="09">Sep</option>
+			     	      <option value="10">Oct</option>
+			     	      <option value="11">Nov</option>
+			     	      <option value="12">Dec</option>
+		     	        </select>
+			     	    <select name="Day" size="1" class="style3" id="Day">
+			     	      <option value="1">1</option>
+			     	      <option value="2">2</option>
+			     	      <option value="3">3</option>
+			     	      <option value="4">4</option>
+			     	      <option value="5">5</option>
+			     	      <option value="6">6</option>
+			     	      <option value="7">7</option>
+			     	      <option value="8">8</option>
+			     	      <option value="9">9</option>
+			     	      <option value="10">10</option>
+			     	      <option value="11">11</option>
+			     	      <option value="12">12</option>
+			     	      <option value="13">13</option>
+			     	      <option value="14" selected>14</option>
+			     	      <option value="15">15</option>
+			     	      <option value="16">16</option>
+			     	      <option value="17">17</option>
+			     	      <option value="18">18</option>
+			     	      <option value="19">19</option>
+			     	      <option value="20">20</option>
+			     	      <option value="21">21</option>
+			     	      <option value="22">22</option>
+			     	      <option value="23">23</option>
+			     	      <option value="24">24</option>
+			     	      <option value="25">25</option>
+			     	      <option value="26">26</option>
+			     	      <option value="27">27</option>
+			     	      <option value="28">28</option>
+			     	      <option value="29">29</option>
+			     	      <option value="30">30</option>
+			     	      <option value="31">31</option>
+		     	        </select>
+                           </fieldset>
+                      </td>
+			      	  <td  >&nbsp;</td>
+			      	  <td  ></td>
+                      <td  ></td>
+		    	  </tr>
+			    	<tr>
+			    	  <td  ></td>
+					  <td   ><label>Time of Birth:</label></td>	
+			     	  <td  >
+                           <fieldset data-role="controlgroup" data-type="horizontal"><select name="hour" class="style3" id="hour">
+			     	      <option value="1">1</option>
+			     	      <option value="2">2</option>
+			     	      <option value="3">3</option>
+			     	      <option value="4">4</option>
+			     	      <option value="5">5</option>
+			     	      <option value="6">6</option>
+			     	      <option value="7">7</option>
+			     	      <option value="8">8</option>
+			     	      <option value="9">9</option>
+			     	      <option value="10">10</option>
+			     	      <option value="11">11</option>
+			     	      <option value="12">12</option>
+                          </select>
+                          <select name="min" class="style3" id="min">
+			     	      <option value="1">1</option>
+			     	      <option value="2">2</option>
+			     	      <option value="3">3</option>
+			     	      <option value="4">4</option>
+			     	      <option value="5">5</option>
+			     	      <option value="6">6</option>
+			     	      <option value="7">7</option>
+			     	      <option value="8">8</option>
+			     	      <option value="9">9</option>
+			     	      <option value="10">10</option>
+			     	      <option value="11">11</option>
+			     	      <option value="12">12</option>
+			     	      <option value="13">13</option>
+			     	      <option value="14" selected>14</option>
+			     	      <option value="15">15</option>
+			     	      <option value="16">16</option>
+			     	      <option value="17">17</option>
+			     	      <option value="18">18</option>
+			     	      <option value="19">19</option>
+			     	      <option value="20">20</option>
+			     	      <option value="21">21</option>
+			     	      <option value="22">22</option>
+			     	      <option value="23">23</option>
+			     	      <option value="24">24</option>
+			     	      <option value="25">25</option>
+			     	      <option value="26">26</option>
+			     	      <option value="27">27</option>
+			     	      <option value="28">28</option>
+			     	      <option value="29">29</option>
+			     	      <option value="30">30</option>
+			     	      <option value="31">31</option>
+			     	      <option value="32">32</option>
+			     	      <option value="33">33</option>
+			     	      <option value="34">34</option>
+			     	      <option value="35">35</option>
+			     	      <option value="36">36</option>
+			     	      <option value="37">37</option>
+			     	      <option value="38">38</option>
+			     	      <option value="39">39</option>
+			     	      <option value="40">40</option>
+			     	      <option value="41">41</option>
+			     	      <option value="42">42</option>
+			     	      <option value="43">43</option>
+			     	      <option value="44">44</option>
+			     	      <option value="45">45</option>
+			     	      <option value="46">46</option>
+			     	      <option value="47">47</option>
+			     	      <option value="48">48</option>
+			     	      <option value="49">49</option>
+			     	      <option value="50">50</option>
+			     	      <option value="51">51</option>
+			     	      <option value="52">52</option>
+			     	      <option value="53">53</option>
+			     	      <option value="54">54</option>
+			     	      <option value="55">55</option>
+			     	      <option value="56">56</option>
+			     	      <option value="57">57</option>
+			     	      <option value="58">58</option>
+			     	      <option value="59">59</option>
+			     	      <option value="00">00</option>
+                          </select>
+                          
+                          <select name="time" class="style3" id="time">
+                            <option value="PM">PM</option>
+                            <option value="AM">AM</option>
+                          </select>
+                       </fieldset>
+                       </td>
+			      	<td  >&nbsp;</td>
+			      	<td  ></td>
+			      	<td  > <button type="submit" id="basics" autofocus> let's see how you looks like.</button></td>
+                      <td  ></td>
+		    	  </tr>
+		      	</table>
+               </form>
+            </div>
+            <div data-role="popup" id="signin" class="ui-content" data-overlay-theme="b">
+                 <form method="post" method="get" action="Signup.php">
+                    <div>
+                        <h3>Login information</h3>
+                        <label for="usrnm" class="ui-hidden-accessible">Username:</label>
+                        <input type="text" name="user" id="usrnm" placeholder="Username" required>
+                        <label for="pswd" class="ui-hidden-accessible">Password:</label>
+                        <input type="password" name="passw" id="pswd" placeholder="Password" required>
+                        <label for="log">Keep me logged in</label>
+                        <input type="checkbox" name="login" id="log" value="1" data-mini="true">
+                        <button type="submit" data-inline="true" id="submitlog">Login</button>
+                    </div>
+                </form>
+            
+            
+            </div>
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrollgress.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
