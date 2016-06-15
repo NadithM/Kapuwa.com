@@ -1,4 +1,71 @@
+<?php
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "kapuwa";
+    $nic = "";
 
+    $fname ="";
+	$lname ="";
+	$ad1 ="";
+	$ad2 ="";
+	$ad3 ="";
+	$email ="";
+	$nic ="";
+	$gender ="";
+	$year ="";
+	$mnth ="";
+	$day ="";
+	$hour ="";
+	$min ="";
+	$tim ="";
+    $age= "";
+    $mydob= "";
+    $adrs = "";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	}
+	echo "Connected successfully";
+	
+	if (isset($_POST['fname'])&&isset($_POST['lname'])&&isset($_POST['NIC'])&&isset($_POST['email'])&&isset($_POST['gender'])&&isset($_POST['add1'])&&isset($_POST['year'])&&isset($_POST['month'])&&isset($_POST['Day'])&&isset($_POST['hour'])&&isset($_POST['min'])&&isset($_POST['time'])) {
+		$fname = $_POST['fname'];
+		$lname = $_POST['lname'];
+		$ad1 = $_POST['add1'];
+		$ad2 = $_POST['add2'];
+		$ad3 = $_POST['add3'];
+		$email = $_POST['email'];
+		$nic = $_POST['NIC'];
+		$gender = $_POST['gender'];
+		$year = $_POST['year'];
+		$mnth = $_POST['month'];
+		$day = $_POST['Day'];
+		$hour = $_POST['hour'];
+		$min = $_POST['min'];
+		$tim = $_POST['time'];
+		
+		//age
+		$currYr = date("Y");
+		$yr = intval($year);
+		$age = $currYr - $yr;		
+		//address
+		$adrs = $ad1." ".$ad2." ".$ad3;
+		//DOB
+		$mydob = $year." ".$mnth." ".$day;
+	}
+	$sql = "INSERT INTO person (fName, lName, age ,address, nic, emailadd, dob, gender)
+			VALUES ('$fname', '$lname', '$age', '$adrs', '$nic', '$email', '$mydob', '$gender')";
+
+	if ($conn->query($sql) === TRUE) {
+		echo "New record created successfully"."<br>";
+	} else {
+		echo "Error: " . $sql . "<br>" . $conn->error;
+	}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -6,7 +73,7 @@
     <title>SignUP</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <meta charset="utf-8"/>
+<meta charset="utf-8"/>
 <link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">
 <link href="css/bootstrap-2.3.min.css" rel="stylesheet" type="text/css"/>
 <link href="css/style.css" rel="stylesheet" type="text/css"/>
@@ -24,11 +91,24 @@
   <div data-role="header" style="height: 50px;">
     <h1 style="font-size: 16pt; alignment-baseline: text-after-edge">About you..!!</h1>
   </div>
+  <script >
+		var nic = "<?php echo $nic?>";
+		//alert(nic);
+		
+		
+		$("#nic").val(""+nic+"");
+		$("#setNIC").hide();
+  </script>
       
   <div data-role="main" class="ui-content">
-    <form method="post" id="looks">
+    <form method="POST" id="looks" action = "look.php">
       <fieldset data-role="collapsible">
         <legend>Let's see how you look..!!</legend>
+        <div id="setNIC">
+			<td>
+  				<input type="text" name="nic" id="nic">
+			</td>
+		</div>
 				<table>
 					<tr>
 						<td>
@@ -39,11 +119,11 @@
           				<input type="text" name="height" id="heightfeet"> feet
 						</td>
 						<td>
-									<input type="text" name="height" id="heightinch"> inches
+							<input type="text" name="height" id="heightinch"> inches
 						</td>
 						<td style="width:10%;"></td>
 						<td>
-									<label for="bodytype">Your body type: </label>
+							<label for="bodytype">Your body type: </label>
 						</td>
 						<td style="width:3%;"></td>
 						<td>
@@ -85,10 +165,8 @@
 						</td>						
 					</tr>				
         </table> 
-      <input type="submit" data-inline="true" value="Submit">
       </fieldset>
-    </form>
-	<form method="post" id="life">
+    
       <fieldset data-role="collapsible" >
         <legend>About your current life..</legend>
 				<table>
@@ -112,7 +190,7 @@
 						<td style="width:3%;"></td>
 						<td>
 									<select name="kids" id="kids">
-										<option value=NULL>None</option>
+										<option value="none">None</option>
 										<option value=1>1</option>
 										<option value=2>2</option>
 										<option value=3>3</option>
@@ -150,13 +228,9 @@
 						</td>						
 					</tr>				
         </table> 
-      <input type="submit" data-inline="true" value="Submit">
+      
       </fieldset>
-    </form>
-
-    </form>
-
-	<form method="post" id="job">
+    
       <fieldset data-role="collapsible" >
         <legend>About your Financial and Education level</legend>
 				<table>
@@ -190,7 +264,28 @@
 						</td>
 						<td style="width:3%;"></td>
 						<td>
-							<input type="text" name="Occupation" id="Occupation">
+							<select name="Occupation" id="Occupation1">
+                                <option value="Administrative">Administrative</option>
+                                <option value="Artist">Artist</option>
+                                <option value="Executive">Executive</option>
+                                <option value="Financial">Financial</option>
+                                <option value="Labour">Labour</option>
+                                <option value="Legal">Legal</option>
+                                <option value="Medical">Medical</option>
+                                <option value="Civil Service">Civil Service</option>
+                                <option value="Retail">Retail</option>
+                                <option value="Retired">Retired</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Entrepreneur">Entreprenuer</option>
+                                <option value="Student">Student</option>
+                                <option value="Education">Education</option>
+                                <option value="Engineering">Engineering</option>
+                                <option value="Hospitality">Hospitality</option>
+                                <option value="Volunteer">Volunteer</option>
+                                <option value="National Security">National Security</option>
+                                <option value="Fashion">Fashion</option>
+                                <option value="Architecture">Architecture</option>
+                            </select>
 						</td>	
 						<td style="width:10%;"></td>
 						<td>
@@ -210,11 +305,9 @@
 						</td>						
 					</tr>				
         </table> 
-      <input type="submit" data-inline="true" value="Submit">
+      
       </fieldset>
-    </form>
-
-    <form method="post" id="lifestyle">
+    
       <fieldset data-role="collapsible" >
         <legend>About your lifestyle..</legend>
 				<table>
@@ -223,7 +316,7 @@
           				<label for="Smokingyou">Do you smoke?</label>
 						</td>	
 						<td style="width:3%;"></td>
-          	            <td>
+          	            <td style="width: 100px;">
 							<select name="Smokingyou" id="Smokingyou">
 						    	<option value="No">No way</option>
 								<option value="Occasionally">Occasionally</option>
@@ -252,14 +345,12 @@
 							<label>Do you exersize? </label>
 						</td>
 						<td style="width:3%;"></td>
-						<td>
-							<fieldset data-role="controlgroup" data-type="horizontal">
-			     	    <label for="Yes">Yes</label>
-                        <input type="radio" name="Excersizeyou" id="Yes" value="true">
-                        <label for="No">No</label>
-                        <input type="radio" name="Excersizeyou" id="No" value="false">
-                        <label for="None">No concern</label>
-                        <input type="radio" name="Excersizeyou" id="None" value="None" checked>
+						<td style="width: auto;">
+					<fieldset data-role="controlgroup" data-type="horizontal">
+			     	    <label for="Yes1">Yes</label>
+                        <input type="radio" name="Excersize" id="Yes1" value="true">
+                        <label for="No1">No</label>
+                        <input type="radio" name="Excersize" id="No1" value="false">
                            </fieldset>
 						</td>	
 						<td style="width:10%;"></td>
@@ -285,27 +376,25 @@
 						</td>						
 					</tr>				
         </table> 
-      <input type="submit" data-inline="true" value="Submit">
+      
       </fieldset>
-    </form>
-
-	<form method="post" id="Background">
+    
       <fieldset data-role="collapsible" >
-        <legend>About your Backgroud..</legend>
+        <legend>About your Background..</legend>
 				<table>
-					<tr>
+					<tr style="height: auto">
 						<td>
           				<label for="language">What languages do you speak? </label>
 						</td>	
 						<td style="width:3%;"></td>
-          	            <td>
+          	            <td >
 							<fieldset data-role="controlgroup" data-type="horizontal">
-                            <label for="Sinhala">Sinhala</label>						
-							<input type="checkbox" name="language" id="Sinhala" Value="Sinhala">
-                            <label for="Tamil">Tamil</label>
-                            <input type="checkbox" name="language" id="Tamil" value="Tamil">
-                            <label for="English">English</label>
-                            <input type="checkbox" name="language" id="English" value="English">
+                            <label for="Sinhala1">Sinhala</label>						
+							<input type="checkbox" name="language" id="Sinhala1" Value="Sinhala">
+                            <label for="Tamil1">Tamil</label>
+                            <input type="checkbox" name="language" id="Tamil1" value="Tamil">
+                            <label for="English1">English</label>
+                            <input type="checkbox" name="language" id="English1" value="English">
                             </fieldset>
 						</td>
 						
@@ -348,18 +437,18 @@
 						</td>						
 					</tr>				
         </table> 
-      <input type="submit" data-inline="true" value="Submit">
+      
       </fieldset>
-    </form>
+    
 	
-  </div>
+  
 
       <div data-role="header" style="height: 50px;">
     <h1 style="font-size: 16pt; alignment-baseline: text-after-edge">About your life partner..!!</h1>
   </div>
       
   <div data-role="main" class="ui-content">
-    <form method="post" id="lookshim">
+    
       <fieldset data-role="collapsible">
         <legend>About the looks..!! (hint: don't be too picky ;))</legend>
 				<table>
@@ -423,10 +512,9 @@
 						</td>						
 					</tr>				
         </table> 
-      <input type="submit" data-inline="true" value="Submit">
+      
       </fieldset>
-    </form>
-	<form method="post" id="lifehim">
+    
       <fieldset data-role="collapsible" >
         <legend>About his/her life..</legend>
 				<table>
@@ -446,17 +534,13 @@
 						
 						<td style="width:10%;"></td>
 						<td>
-									<label for="kidshim">You wan't Kids? </label>
+									<label for="agelimit">Preffered age limit</label>
 						</td>
 						<td style="width:3%;"></td>
 						<td>
-									<select name="kidshim" id="kidshim">
-										<option value=NULL>None</option>
-										<option value=1>1</option>
-										<option value=2>2</option>
-										<option value=3>3</option>
-										<option value=4>4</option>
-									</select>
+							<input type="number" id="lowerbound" name="lowerboundage" style="width:auto;height: auto;" step="5" height="auto" required>
+                            to
+                            <input type="number" id="upperbound" name="upperboundage" style="width:auto;height: auto" step="5" height="auto" required>
 						</td>	
 					</tr>
 					<tr>
@@ -491,13 +575,8 @@
 						</td>						
 					</tr>				
         </table> 
-      <input type="submit" data-inline="true" value="Submit">
       </fieldset>
-    </form>
-
-    </form>
-
-	<form method="post" id="jobhim">
+    
       <fieldset data-role="collapsible" >
         <legend>About his/her Financial and Education level</legend>
 				<table>
@@ -507,7 +586,7 @@
 						</td>	
 						<td style="width:3%;"></td>
           	<td>
-									<select name="Education" id="Education">
+									<select name="Educationhim" id="Educationhim">
                                         <option value="none">No concern</option>
 										<option value="O/L">O/L</option>
 										<option value="A/L">A/L</option>
@@ -526,19 +605,40 @@
 					</tr>
 					<tr>
 						<td>
-							<label for="Occupation">What is his/her Occupation? </label>
+							<label for="Occupationhim">What is his/her Occupation? </label>
 						</td>
 						<td style="width:3%;"></td>
 						<td>
-							<input type="text" name="Occupation" id="Occupation">
+							<select name="Occupationhim" id="Occupationhim">
+                                <option value="Administrative">Administrative</option>
+                                <option value="Artist">Artist</option>
+                                <option value="Executive">Executive</option>
+                                <option value="Financial">Financial</option>
+                                <option value="Labour">Labour</option>
+                                <option value="Legal">Legal</option>
+                                <option value="Medical">Medical</option>
+                                <option value="Civil Service">Civil Service</option>
+                                <option value="Retail">Retail</option>
+                                <option value="Retired">Retired</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Entrepreneur">Entreprenuer</option>
+                                <option value="Student">Student</option>
+                                <option value="Education">Education</option>
+                                <option value="Engineering">Engineering</option>
+                                <option value="Hospitality">Hospitality</option>
+                                <option value="Volunteer">Volunteer</option>
+                                <option value="National Security">National Security</option>
+                                <option value="Fashion">Fashion</option>
+                                <option value="Architecture">Architecture</option>
+                            </select>
 						</td>	
 						<td style="width:10%;"></td>
 						<td>
-							<label for="Salery">His/Her Salery range: </label>
+							<label for="Saleryhim">His/Her Salery range: </label>
 						</td>
 						<td style="width:3%;"></td>
 						<td>						
-							<select name="Salery" id="Salery">
+							<select name="Saleryhim" id="Saleryhim">
                                         <option value="none">No concern</option>
 										<option value="0-25000">Less than 25000</option>
 										<option value="25000-35000">25000-35000</option>
@@ -551,21 +651,18 @@
 						</td>						
 					</tr>				
         </table> 
-      <input type="submit" data-inline="true" value="Submit">
       </fieldset>
-    </form>
-
-    <form method="post" id="lifestyle">
+    
       <fieldset data-role="collapsible" >
         <legend style="font-size: 20pt; font-weight: 500">About his/her lifestyle..</legend>
 				<table>
 					<tr>
 						<td>
-          				<label for="Smoking">Does he/she smoke?</label>
+          				<label for="Smokingh">Does he/she smoke?</label>
 						</td>	
 						<td style="width:3%;"></td>
           	<td>
-									<select name="Smoking" id="Smoking">
+									<select name="Smokingh" id="Smokingh">
                                         <option value="none">No concern</option>
 										<option value="No">No way</option>
 										<option value="Occasionally">Occasionally</option>
@@ -577,11 +674,11 @@
 						
 						<td style="width:10%;"></td>
 						<td>
-									<label for="drinking">How often he/she drink? </label>
+									<label for="drinkinghim">How often he/she drink? </label>
 						</td>
 						<td style="width:3%;"></td>
 						<td>
-									<select name="drinking" id="drinking">
+									<select name="drinkinghim" id="drinkinghim">
                                         <option value="none">No concern</option>
 										<option value="Never">Never</option>
 										<option value="Occasionally">Occasionally</option>
@@ -597,11 +694,11 @@
 						<td>
 							<fieldset data-role="controlgroup" data-type="horizontal">
 			     	    <label for="Yes">Yes</label>
-                        <input type="radio" name="Excersize" id="Yes" value="true">
+                        <input type="radio" name="Excersizehim" id="Yes" value="true">
                         <label for="No">No</label>
-                        <input type="radio" name="Excersize" id="No" value="false">
+                        <input type="radio" name="Excersizehim" id="No" value="false">
                         <label for="None">No concern</label>
-                        <input type="radio" name="Excersize" id="None" value="None" checked>
+                        <input type="radio" name="Excersizehim" id="None" value="None" checked>
                            </fieldset>
 						</td>	
 						<td style="width:10%;"></td>
@@ -614,37 +711,34 @@
 						</td>						
 					</tr>				
         </table> 
-      <input type="submit" data-inline="true" value="Submit">
       </fieldset>
-    </form>
-
-	<form method="post" id="Background">
+    
       <fieldset data-role="collapsible" >
-        <legend>About his/her Backgroud..</legend>
+        <legend>About his/her Background..</legend>
 				<table>
 					<tr>
 						<td>
-          				<label for="language">What languages does he/she speak? </label>
+          				<label for="languagehim">What languages does he/she speak? </label>
 						</td>	
 						<td style="width:3%;"></td>
           	            <td>
 							<fieldset data-role="controlgroup" data-type="horizontal">
                             <label for="Sinhala">Sinhala</label>						
-							<input type="checkbox" name="language" id="Sinhala" Value="Sinhala">
+							<input type="checkbox" name="languagehim" id="Sinhala" Value="Sinhala">
                             <label for="Tamil">Tamil</label>
-                            <input type="checkbox" name="language" id="Tamil" value="Tamil">
+                            <input type="checkbox" name="languagehim" id="Tamil" value="Tamil">
                             <label for="English">English</label>
-                            <input type="checkbox" name="language" id="English" value="English">
+                            <input type="checkbox" name="languagehim" id="English" value="English">
                             </fieldset>
 						</td>
 						
 						<td style="width:10%;"></td>
 						<td>
-									<label for="Ethinity">His/Her Ethinity</label>
+									<label for="Ethinityhim">His/Her Ethinity</label>
 						</td>
 						<td style="width:3%;"></td>
 						<td>
-									<select name="Ethinity" id="Ethinity">
+									<select name="Ethinityhim" id="Ethinityhim">
                                         <option value="none">No concern</option>
 										<option value="Sinhala">Sinhala</option>
 										<option value="Tamil">Tamil</option>
@@ -656,19 +750,19 @@
 					</tr>
 					<tr>
 						<td>
-							<label for="Cast">His/Her Cast: </label>
+							<label for="Casthim">His/Her Cast: </label>
 						</td>
 						<td style="width:3%;"></td>
 						<td>
-							<input type="text" name="Cast" id="Cast">
+							<input type="text" name="Casthim" id="Casthim">
 						</td>	
 						<td style="width:10%;"></td>
 						<td>
-							<label for="Hobbies"> His/Her Hobbies: </label>
+							<label for="Hobbieshim"> His/Her Hobbies: </label>
 						</td>
 						<td style="width:3%;"></td>
 						<td>						
-							<select name="Hobbies" id="Hobbies">
+							<select name="Hobbieshim" id="Hobbieshim">
                                         <option value="none">No concern</option>
 										<option value="Reading books">Reading books</option>
 										<option value="Alumni collection">Alumni collection</option>
@@ -679,30 +773,34 @@
 						</td>						
 					</tr>				
         </table> 
-      <input type="submit" data-inline="true" value="Submit">
       </fieldset>
-    </form>
-
     
-	
-  </div>
-    <div>
         <fieldset data-role="controlgroup">
-            <form>
-            <label for="Pic">Select and upload your good picture.</label>
-            <input type="file" accept="image/*" name="Pic" id="Pic">
-            </form>                 
+           
+                <table>
+                    <tr style="height: 50px">
+                        <td style="width: 5%"></td>
+                        <td>
+                            <label for="Pic">Select and upload your good picture.</label>
+                            <input type="file" accept="image/*" name="Pic" id="Pic">
+                        </td>
+                        <td style="width: 10%"></td>
+                        <td>
+                            <label for="about">Impress Him/Her.. Write about yourself</label>
+                            <textarea id="about" name="about"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                            
         </fieldset>
-        <button type="submit" id="all" style="width: auto; height: auto; font-size: 20pt; alignment-adjust: middle; alignment-baseline: central;">Submit your data</button>    
+        <button type="submit" id="all" style="width: auto; height: auto; font-size: 20pt; alignment-adjust: middle; alignment-baseline: central;" value="Submit">Submit your data</button>    
+            </div>
+        </form>
         </div>
     </div>
-    <?php
-echo "<pre>";
-print_r($_POST);
-echo "<pre>";
-
-
-?>
+    
+   
+    
 
 </body>
 </html>
